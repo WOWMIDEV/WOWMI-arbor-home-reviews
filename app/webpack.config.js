@@ -1,4 +1,5 @@
 const path = require('path');
+
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const mode = process.env.NODE_ENV;
@@ -28,8 +29,7 @@ module.exports = {
   },
 
   entry: {
-    index: './src/js/index.ts',
-    about: './src/js/about.js',
+    index: './src/js/index.js',
   },
 
   output: {
@@ -58,9 +58,7 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
-        include: [
-          path.resolve(__dirname, 'src/js'),
-        ],
+        include: [path.resolve(__dirname, 'src/js')],
       },
       // STYLES MODULE
       {
@@ -90,7 +88,9 @@ module.exports = {
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options: { publicPath: '../' },
+            options: {
+              publicPath: '../',
+            },
           },
           'css-loader',
           'postcss-loader',
@@ -124,10 +124,9 @@ module.exports = {
     ],
   },
 
-  plugins:
-    [
-      new MiniCssExtractPlugin({
-        filename: 'css/[name].css',
-      }),
-    ],
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css',
+    }),
+  ],
 };
